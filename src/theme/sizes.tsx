@@ -1,0 +1,30 @@
+const sizes = {
+    none: '0px',
+    preon: '1px',
+    quark: '2px',
+    nano: '4px',
+    micro: '6px',
+    mini: '8px',
+    tiny: '10px',
+    little: '12px',
+    small: '14px',
+    normal: '16px',
+    intermediary: '18px',
+    medium: '20px',
+    big: '24px',
+    large: '28px',
+    grand: '32px',
+    giant: '36px',
+    gigantic: '40px',
+    immense: '48px',
+    enormous: '56px',
+    tremendous: '64px',
+    massive: '72px',
+    huge: '80px',
+    monstrous: '88px',
+    colossal: '96px',
+    astronomical: '104px',
+    titanic: '112px'
+}
+
+export default sizes
