@@ -1,9 +1,14 @@
 
+import { GlobalStyle } from "./styled/global"
+import Router from "./routes"
+
+
 function App() {
 
   return (
     <>
-      <p>oi</p>
+      <GlobalStyle />
+      <Router />
     </>
   )
 }

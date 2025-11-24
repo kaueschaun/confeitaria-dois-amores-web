@@ -12,8 +12,11 @@ const colors = {
     night: '#000000',
 
     background: '#f9fafb',
-    backgroundSecondary: '#f3f4f6'
+    backgroundPrimary: "color-mix(in srgb, #9333ea 50%, #7c3aed 50%)",
     
+    backgroundSecondary: '#f3f4f6',
+    
+    nightLight: '#ACACAC',
     
 
 }

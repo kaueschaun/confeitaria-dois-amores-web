@@ -37,7 +37,6 @@ export interface TextProps {
     color?: string;
     ellipsisAt?: number;
     textAlign?: 'left' | 'center' | 'right' | 'justify';
-
     children?: ReactNode;
 }
 

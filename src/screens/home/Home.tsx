@@ -1,6 +1,9 @@
+import Main from "../../modules/home/Main"
 
 export default function Home() {
   return (
-    <div>Home</div>
+    <>
+      <Main />
+    </>
   )
 }
