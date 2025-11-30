@@ -17,6 +17,8 @@ const colors = {
     backgroundSecondary: '#f3f4f6',
     
     nightLight: '#ACACAC',
+
+    primaryBorder: '#e5e7eb'
     
 
 }

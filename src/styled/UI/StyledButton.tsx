@@ -5,7 +5,7 @@ import colors from "../../theme/colors";
 // TIPOS DE VARIANTES
 const variants = {
   default: css`
-    background: ${colors.primary};
+    background: ${colors.backgroundPrimary};
     color: ${colors.white};
     &:hover {
       background: ${colors.backgroundSecondary};
@@ -18,18 +18,30 @@ const variants = {
       background: ${colors.backgroundSecondary};
     }
   `,
+
+  borded: css`
+    background: transparent;
+    color: ${colors.backgroundPrimary};
+    border: 1px solid ${colors.primaryBorder};
+    &:hover {
+      background: ${colors.backgroundPrimary};
+      color: ${colors.white}
+    }
+  `,
+
+  
   outline: css`
-        box-shadow: none;
-        font-weight: 400;
-        background: transparent !important;
-        border:  none;
-        text-decoration: none;
-        color: color-mix(in srgb, #9333ea 50%, #7c3aed 50%);
-        padding: 5px !important;
-        width: 100%;
-        &:hover {
-            border:  none !important;
-        }
+    box-shadow: none;
+    font-weight: 600;
+    background: transparent !important;
+    border:  none;
+    text-decoration: none;
+    color: ${colors.backgroundPrimary};
+    padding: 5px !important;
+    width: 100%;
+    &:hover {
+        border:  none !important;
+    }
   `,
 };
 
