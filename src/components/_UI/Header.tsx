@@ -11,7 +11,7 @@ import { Column } from "../../styled/alignment/Column"
 
   const moveToRight = keyframes`
       from {
-        transform: translateX(-300px);
+        transform: translateX(-100%);
       }
       to {
         transform: translateX(0px);
@@ -23,25 +23,36 @@ export default function Header() {
   return (
     <>
       <MenuMobile $visible={visibleMenu}>
-
-        <Close onClick={() => setVisibleMenu(!visibleMenu)}/>
         <ContentMenuMobile>
-          <ContentImage>
-            <img src="/assets/svg/icons/logo2.svg" />
-          </ContentImage>
-          <Text marginLeft='5px' type="bold" color={colors.white}>Confeitaria Dois Amores</Text>
+          <Row verticalCenter>
+            <ContentImage>
+              <img src="/assets/svg/icons/logo2.svg" />
+            </ContentImage>
+            <Text marginLeft='5px' type="bold" color={colors.white}>Confeitaria Dois Amores</Text>
+          </Row>
+          <Close onClick={() => setVisibleMenu(!visibleMenu)}>
+            <span />
+          </Close>
         </ContentMenuMobile>
          
+        <MainMenu>
+          <CardRoute>
+            <IconRoute>
+              <User size={20} color={colors.white}/>
+            </IconRoute>
+            <Text marginLeft='20px' type="bold" color={colors.white}>Entrar</Text>
+          </CardRoute>
+          <CardRoute>
+            <IconRoute>
+              <SlidersHorizontal size={20} color={colors.white}/>
+            </IconRoute>
+            <Text marginLeft='20px' type="bold" color={colors.white}>Filtros</Text>
+          </CardRoute>
+
+        </MainMenu>
       </MenuMobile>
       <Container>
         <Content>
-          <ContentMobile $visible={visibleMenu}>
-            <ActionMenuMobile onClick={() => setVisibleMenu(!visibleMenu)} />
-          </ContentMobile>
-
-
-         
-
           <StyledRight>
             <Row verticalCenter>
 
@@ -63,9 +74,6 @@ export default function Header() {
 
 
           </StyledRight>
-
-        
-
           <StyledSection>
             <ContentAccountKart>
               <Row>
@@ -78,6 +86,15 @@ export default function Header() {
               </ContentKar>
             </ContentAccountKart>
           </StyledSection>
+        
+          
+          <ContentMobile $visible={visibleMenu}>
+            <MenuButton onClick={() => setVisibleMenu(!visibleMenu)}>
+              <ActionMenuMobile />
+            </MenuButton>
+          </ContentMobile>
+
+
         </Content>
         
       </Container>
@@ -96,15 +113,15 @@ const Container = styled.header`
 const Content = styled.div`
   display: flex;
   flex-direction: row;
-  justify-content: flex-start;
+  justify-content: space-between;
   max-width: 80rem;      
   margin: 0px auto;     
   padding: 0 1rem;
-
+  align-items: center;
   @media screen and (min-width: ${breakpoints.sm}){
     padding-left: 1.5rem;
     padding-right: 1.5rem;
-    justify-content: flex-start;
+   justify-content: space-between;
   }
 
    @media screen and (min-width: ${breakpoints.lg}){
@@ -164,12 +181,10 @@ const StyledSection = styled.section`
 
 const ContentMobile = styled.div<{ $visible: boolean }>`
   display: flex;
-  padding: 0 15px 10px 15px;
   flex-direction: row;
   justify-content: center;
   align-items: center;
   position: relative;
-  padding-bottom: 10px;
    ${({ $visible }) => $visible === true && `
       display: flex;
   `}
@@ -179,35 +194,28 @@ const ContentMobile = styled.div<{ $visible: boolean }>`
   @media screen and (min-width: ${breakpoints.md}) {
     display: none;
   }
+
 `;
 
 
 const ActionMenuMobile = styled.div`
- 
-  width: 18px;
-  height: 3px;
-  position: absolute;
-  /* top: 5px; */
-  left: 0;
+  width: 15px;
+  height: 2px;
   background: ${colors.backgroundPrimary};
-  &::before {
-    content: '';
-    position: absolute;
-    top: 7px;
-    left: 0;
-    width: 18px;
-    height: 3px;
-    background: ${colors.backgroundPrimary};
-  }
+  position: relative;
+
+  &::before,
   &::after {
     content: '';
-    position: absolute;
-    top: 14px;
-    left: 0;
-    width: 18px;
-    height: 3px;
+    width: 15px;
+    height: 2px;
     background: ${colors.backgroundPrimary};
+    position: absolute;
+    left: 0;
   }
+
+  &::before { top: -5px; }
+  &::after { top: 5px; }
 `;
 
 const FieldSet = styled.input`
@@ -246,11 +254,13 @@ const MenuMobile = styled(Column)<{ $visible: boolean }>`
     transition: ease-in  0.3s;
     animation: ${moveToRight} .4s ease forwards;
     width: 100%;
+   
+
   ${({ $visible }) => !$visible && `
-    padding: 15px;
+    padding: 30px 20px;
     display: flex;
     flex-direction: column;
-    align-items: flex-end;   /* 👉 faz o X ir pra direita */
+    align-items: flex-end;  
     gap: 20px;
     position: fixed;
     top: 0;
@@ -269,34 +279,100 @@ const MenuMobile = styled(Column)<{ $visible: boolean }>`
 
  const Close = styled.div`
   position: relative;
-  width: 20px;
-  height: 20px;
+  width: 45px;
+  height: 45px;
   cursor: pointer;
+  background: rgb(255 255 255 / 0.1);
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: transform .25s ease;
 
-  &::before,
-  &::after {
+  span {
+    position: relative;
+    width: 18px;
+    height: 18px;
+    display: block;
+    transition: transform .25s ease;
+  }
+
+  span::before,
+  span::after {
     content: '';
     position: absolute;
     top: 50%;
-    right: 0;          /* 👉 alinhar à direita */
+    left: 0;
     width: 18px;
     height: 3px;
     background: ${colors.white};
     transform: translateY(-50%);
   }
-
-  &::before {
+  span::before {
     transform: translateY(-50%) rotate(45deg);
   }
 
-  &::after {
+  span::after {
     transform: translateY(-50%) rotate(-45deg);
+  }
+
+  &:hover span {
+    transform: rotate(90deg);
   }
 `;
 
+
 const ContentMenuMobile = styled(Row)`
   width: 100%;
-  justify-content: center;
+  justify-content: space-between;
   align-items: center;
   gap: 10px;
+`;
+
+const MenuButton = styled.div`
+  width: 45px;
+  height: 45px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  transition: ease-in  .25s;
+  background: ${colors.background};
+
+  &:hover {
+    transform: scale(1.01);
+  }
+`;
+
+const MainMenu = styled(Column)`
+  width: 100%;
+  gap: 10px;
+`
+
+const CardRoute = styled(Row)`
+  height: 95px;
+  width: 100%;
+  padding: 20px;
+  background: rgb(255 255 255 / 0.1);
+  border-radius: 20px;
+  align-items: center;
+  transition: all ease-in-out .25s;
+
+  &:hover {
+    transform: scale(1.01);
+    background: rgb(255 255 255 / 0.2);
+    cursor: pointer;
+  }
+`;
+
+const IconRoute = styled.div`
+  width: 45px;
+  height: 45px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: rgb(255 255 255 / 0.1);
+  border-radius: 10px;
 `
