@@ -7,6 +7,7 @@ import breakpoints from "../../theme/breakpoints"
 import Button from "./Button"
 import { useState } from "react"
 import { Column } from "../../styled/alignment/Column"
+import paths from "../../routes/paths"
 
 
   const moveToRight = keyframes`
@@ -38,9 +39,12 @@ export default function Header() {
         <MainMenu>
           <CardRoute>
             <IconRoute>
-              <User size={20} color={colors.white}/>
+              <User size={16} color={colors.white}/>
             </IconRoute>
-            <Text marginLeft='20px' type="bold" color={colors.white}>Entrar</Text>
+           
+            <Button variant="outline" path={paths.login}>
+              <Text marginLeft={'20px'} type="bold" color={colors.white}>Entrar</Text>
+            </Button>
           </CardRoute>
           <CardRoute>
             <IconRoute>
@@ -77,8 +81,8 @@ export default function Header() {
           <StyledSection>
             <ContentAccountKart>
               <Row>
-                <User color={colors.primary} size={35} />
-                <Button variant="outline"  category="primary">Entrar</Button>
+                <User color={colors.primary} size={25} />
+                <Button variant="outline"  category="primary" path={paths.login}>Entrar</Button>
               </Row>
 
               <ContentKar>
@@ -87,7 +91,6 @@ export default function Header() {
             </ContentAccountKart>
           </StyledSection>
         
-          
           <ContentMobile $visible={visibleMenu}>
             <MenuButton onClick={() => setVisibleMenu(!visibleMenu)}>
               <ActionMenuMobile />
@@ -348,6 +351,11 @@ const MenuButton = styled.div`
 const MainMenu = styled(Column)`
   width: 100%;
   gap: 10px;
+
+  & > div > a > button > p {
+    font-size: 16px;
+    /* background:red; */
+  }
 `
 
 const CardRoute = styled(Row)`

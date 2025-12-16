@@ -17,6 +17,12 @@ const padding = css`
     padding-left: ${({ paddingLeft }) => paddingLeft};
 `;
 
+interface TextPersonalizedProps {
+  size?: string,
+  weight?: string,
+  line?: string,
+}
+
 const commonStyles = css`
     ${margin};
     ${padding};
@@ -59,6 +65,14 @@ export const StyledSubtitle = styled.h2`
     ${commonStyles};
 
     font-size: 20px;
+`;
+
+export const StyledTextPersonalized = styled.p<TextPersonalizedProps>`
+  ${commonStyles};
+
+  font-size: ${({ size }) => size || '16px'};
+  font-weight: ${({ weight}) => weight || '400'};
+  line-height: ${({ line }) => line || '1.5rem'};
 `;
 
 export const StyledHighlight = styled.span`

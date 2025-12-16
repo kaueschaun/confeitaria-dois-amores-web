@@ -3,6 +3,7 @@ import {
     StyledTitle,
     StyledSubtitle,
     StyledHighlight,
+    StyledTextPersonalized,
     StyledParagraph
 } from '../../styled/UI/StyledText';
 import colors from '../../theme/colors';
@@ -14,6 +15,7 @@ type TextName =
     | 'highlight'
     | 'default'
     | 'small'
+    | 'personalized'
     | 'mini';
 
 type TextType = 'normal' | 'bold' | 'italic';
@@ -37,6 +39,10 @@ export interface TextProps {
     color?: string;
     ellipsisAt?: number;
     textAlign?: 'left' | 'center' | 'right' | 'justify';
+    size?: string;
+    weight?: string;
+    line?: string;
+
     children?: ReactNode;
 }
 
@@ -49,6 +55,9 @@ const Text: FC<TextProps> = ({
     paddingRight,
     paddingBottom,
     paddingLeft,
+    weight,
+    line,
+    size,
 
     name = 'default',
     type = 'normal',
@@ -73,6 +82,9 @@ const Text: FC<TextProps> = ({
         paddingBottom,
         paddingLeft,
         ellipsisAt,
+        weight,
+        line,
+        size,
     };
 
     const renderText = () => {
@@ -87,6 +99,11 @@ const Text: FC<TextProps> = ({
         if (name === 'highlight') {
             return <StyledHighlight {...commonProps}>{children}</StyledHighlight>;
         }
+
+        if (name === 'personalized') {
+            return <StyledTextPersonalized {...commonProps}>{children}</StyledTextPersonalized>;
+        }
+
 
         return (
             <StyledParagraph
