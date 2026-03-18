@@ -69,22 +69,22 @@ const Text: FC<TextProps> = ({
     children,
 }) => {
     const commonProps = {
-        name,
-        type,
-        color,
-        textAlign,
-        marginTop,
-        marginRight,
-        marginBottom,
-        marginLeft,
-        paddingTop,
-        paddingRight,
-        paddingBottom,
-        paddingLeft,
-        ellipsisAt,
-        weight,
-        line,
-        size,
+        $name: name,
+        $type: type,
+        $color: color,
+        $textAlign: textAlign,
+        $marginTop: marginTop,
+        $marginRight: marginRight,
+        $marginBottom: marginBottom,
+        $marginLeft: marginLeft,
+        $paddingTop: paddingTop,
+        $paddingRight: paddingRight,
+        $paddingBottom: paddingBottom,
+        $paddingLeft: paddingLeft,
+        $ellipsisAt: ellipsisAt,
+        $weight: weight,
+        $line: line,
+        $size: size,
     };
 
     const renderText = () => {
@@ -108,7 +108,7 @@ const Text: FC<TextProps> = ({
         return (
             <StyledParagraph
                 {...commonProps}
-                decoration={decoration}
+                $decoration={decoration}
             >
                 {children}
             </StyledParagraph>

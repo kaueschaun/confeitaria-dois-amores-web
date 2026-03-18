@@ -1,3 +1,4 @@
+'use client';
 import styled, { css } from 'styled-components';
 
 
@@ -12,7 +13,9 @@ interface RowProps {
     fullyCentralized?: boolean;
 }
 
-export const Row = styled.div<RowProps>`
+export const Row = styled.div.withConfig({
+  shouldForwardProp: (prop) => !['flex', 'width', 'height', 'minWidth', 'gap', 'horizontalCenter', 'verticalCenter', 'fullyCentralized'].includes(prop)
+})<RowProps>`
     display: flex;
     flex-direction: row;
     flex: ${({ flex}) => flex};

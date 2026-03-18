@@ -1,8 +1,8 @@
 const colors = {
-    primary: '#7c3aed',
+    primary: '#6d28d9',
     purple: '#6d28d9',
-
     pink: '#ec4899',
+    secondary: '#A855F7',
     
     success: '#10b981',
     danger: '#ef4444',
@@ -12,14 +12,15 @@ const colors = {
     night: '#000000',
 
     background: '#f9fafb',
-    backgroundPrimary: "color-mix(in srgb, #9333ea 50%, #7c3aed 50%)",
+    backgroundPrimary: "#f9fafb",
     
     backgroundSecondary: '#f3f4f6',
     
     nightLight: '#ACACAC',
 
-    primaryBorder: '#e5e7eb'
+    primaryBorder: '#e5e7eb',
+    grayLight: '#e5e7eb'
     
-
+   
 }
 export default colors;

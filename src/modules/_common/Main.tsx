@@ -1,3 +1,4 @@
+'use client';
 import styled from "styled-components";
 import Header from "../../components/_UI/Header";
 import colors from "../../theme/colors";

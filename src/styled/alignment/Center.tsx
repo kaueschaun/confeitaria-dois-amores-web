@@ -1,3 +1,4 @@
+'use client';
 import styled from 'styled-components';
 
 interface CenterProps {
@@ -6,7 +7,9 @@ interface CenterProps {
     textAlign?: string;
 }
 
-export const HorizontalCenter = styled.div<CenterProps>`
+export const HorizontalCenter = styled.div.withConfig({
+  shouldForwardProp: (prop) => !['width', 'height', 'textAlign'].includes(prop)
+})<CenterProps>`
     display: flex;
     justify-content: center;
     width: ${({ width }) => width};
@@ -14,7 +17,9 @@ export const HorizontalCenter = styled.div<CenterProps>`
     text-align: ${({ textAlign }) => textAlign};
 `;
 
-export const VerticalCenter = styled.div<CenterProps>`
+export const VerticalCenter = styled.div.withConfig({
+  shouldForwardProp: (prop) => !['width', 'height', 'textAlign'].includes(prop)
+})<CenterProps>`
     display: flex;
     align-items: center;
     width: ${ props => props.width};
@@ -22,7 +27,9 @@ export const VerticalCenter = styled.div<CenterProps>`
     text-align: ${ props => props.textAlign};
 `;
 
-export const FullyCentered = styled.div<CenterProps>`
+export const FullyCentered = styled.div.withConfig({
+  shouldForwardProp: (prop) => !['width', 'height', 'textAlign'].includes(prop)
+})<CenterProps>`
     display: flex;
     align-items: center;
     justify-content: center;

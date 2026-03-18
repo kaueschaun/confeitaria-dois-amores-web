@@ -1,3 +1,4 @@
+'use client';
 import styled, { css } from 'styled-components';
 
 interface ColumnProps {
@@ -11,7 +12,9 @@ interface ColumnProps {
   fullyCentralized?: boolean;
 }
 
-export const Column = styled.div<ColumnProps>`
+export const Column = styled.div.withConfig({
+  shouldForwardProp: (prop) => !['flex', 'width', 'height', 'minWidth', 'gap', 'horizontalCenter', 'verticalCenter', 'fullyCentralized'].includes(prop)
+})<ColumnProps>`
   display: flex;
   flex-direction: column;
   flex: ${({ flex }) => flex};

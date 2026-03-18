@@ -1,3 +1,4 @@
+'use client';
 import { type FC, type ReactNode } from 'react';
 import { StyledButton,  StyledRouteLink } from '../../styled/UI/StyledButton';
 
@@ -11,6 +12,7 @@ export interface ButtonProps {
     variant?: string;
     category?: string;
     size?: string | number;
+    fullWidth?: boolean;
 
     path?: string;
     children?: ReactNode;
@@ -24,6 +26,7 @@ const Button: FC<ButtonProps> = ({
     variant,
     category,
     size,
+    fullWidth,
     children,
     path
 }) => {
@@ -37,6 +40,7 @@ const Button: FC<ButtonProps> = ({
             variant={variant}
             category={category}
             size={size}
+            fullWidth={fullWidth}
         >
             {children}
         </StyledButton>
@@ -44,7 +48,7 @@ const Button: FC<ButtonProps> = ({
 
     return (
         path ? (
-            <StyledRouteLink to={path}>
+            <StyledRouteLink href={path}>
                 {renderButton()}
             </StyledRouteLink>
         ) : renderButton()

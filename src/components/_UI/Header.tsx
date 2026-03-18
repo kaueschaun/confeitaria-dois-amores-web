@@ -1,3 +1,4 @@
+'use client';
 import styled, { keyframes } from "styled-components"
 import { Row } from "../../styled/alignment/Row"
 import colors from "../../theme/colors"
@@ -7,10 +8,9 @@ import breakpoints from "../../theme/breakpoints"
 import Button from "./Button"
 import { useState } from "react"
 import { Column } from "../../styled/alignment/Column"
-import paths from "../../routes/paths"
 
 
-  const moveToRight = keyframes`
+const moveToRight = keyframes`
       from {
         transform: translateX(-100%);
       }
@@ -35,20 +35,21 @@ export default function Header() {
             <span />
           </Close>
         </ContentMenuMobile>
-         
+
         <MainMenu>
           <CardRoute>
             <IconRoute>
-              <User size={16} color={colors.white}/>
+              <User size={16} color={colors.white} />
             </IconRoute>
-           
-            <Button variant="outline" path={paths.login}>
-              <Text marginLeft={'20px'} type="bold" color={colors.white}>Entrar</Text>
+
+
+            <Button variant="outline" path="/login">
+              <Text marginLeft={'20px'} type="bold" color={colors.secondary}>Entrar</Text>
             </Button>
           </CardRoute>
           <CardRoute>
             <IconRoute>
-              <SlidersHorizontal size={20} color={colors.white}/>
+              <SlidersHorizontal size={20} color={colors.white} />
             </IconRoute>
             <Text marginLeft='20px' type="bold" color={colors.white}>Filtros</Text>
           </CardRoute>
@@ -63,15 +64,15 @@ export default function Header() {
               <ContentImage>
                 <img src="/assets/svg/icons/logo2.svg" />
               </ContentImage>
-              
+
               <Text marginLeft='5px' type="bold">Confeitaria Dois Amores</Text>
             </Row>
 
             <ContentFilters>
-             
-              <FieldSet type="text" placeholder="Pesquisar"/>
+
+              <FieldSet type="text" placeholder="Pesquisar" />
               <Button variant="borded">
-                <SlidersHorizontal size={16}/>
+                <SlidersHorizontal size={16} />
                 Filtrar
               </Button>
             </ContentFilters>
@@ -80,17 +81,17 @@ export default function Header() {
           </StyledRight>
           <StyledSection>
             <ContentAccountKart>
-              <Row>
-                <User color={colors.primary} size={25} />
-                <Button variant="outline"  category="primary" path={paths.login}>Entrar</Button>
-              </Row>
+              <ContentButtonLogin>
+                <User color={colors.secondary} size={20} />
+                <Button variant="outline" path="/login">Entrar</Button>
+              </ContentButtonLogin>
 
               <ContentKar>
                 <ShoppingCart color={colors.white} size={20} />
               </ContentKar>
             </ContentAccountKart>
           </StyledSection>
-        
+
           <ContentMobile $visible={visibleMenu}>
             <MenuButton onClick={() => setVisibleMenu(!visibleMenu)}>
               <ActionMenuMobile />
@@ -99,7 +100,7 @@ export default function Header() {
 
 
         </Content>
-        
+
       </Container>
     </>
   )
@@ -156,12 +157,12 @@ const ContentKar = styled.div`
   display: flex;
   justify-content: center;
   align-items: center;
-  background: ${colors.backgroundPrimary};
+  background: ${colors.secondary};
   transition: all ease-in-out .25s;
 
   &:hover {
     transform: scale(1.05);
-    background: ${colors.purple}
+    opacity: 0.9;
   }
 `;
 
@@ -245,6 +246,7 @@ const ContentFilters = styled(Row)`
     height: 42px;
     width: 100px;
     font-weight: 600;
+    
   }
   @media screen and (min-width: ${breakpoints.md}) {
     display: flex;
@@ -253,7 +255,7 @@ const ContentFilters = styled(Row)`
   }
 `;
 
-const MenuMobile = styled(Column)<{ $visible: boolean }>`
+const MenuMobile = styled(Column) <{ $visible: boolean }>`
     transition: ease-in  0.3s;
     animation: ${moveToRight} .4s ease forwards;
     width: 100%;
@@ -280,7 +282,7 @@ const MenuMobile = styled(Column)<{ $visible: boolean }>`
 `;
 
 
- const Close = styled.div`
+const Close = styled.div`
   position: relative;
   width: 45px;
   height: 45px;
@@ -383,4 +385,27 @@ const IconRoute = styled.div`
   justify-content: center;
   background: rgb(255 255 255 / 0.1);
   border-radius: 10px;
+`
+
+const ContentButtonLogin = styled.div`
+  display: flex;
+  flex-direction: row;
+  padding: 5px;
+  justify-content: center;
+  align-items: center;
+  width: 120px;
+  height: 30px;
+  transition: all ease-in-out .25s;
+  &:hover {
+    background: ${colors.secondary};
+    border-radius: 10px;
+    transform: scale(1.05);
+    opacity: 0.9;
+    & > a > button {
+      color: ${colors.white};
+    }
+    & > svg {
+      stroke: ${colors.white};
+    }
+  }
 `

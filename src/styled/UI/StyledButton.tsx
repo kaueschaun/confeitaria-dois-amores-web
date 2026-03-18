@@ -1,14 +1,23 @@
+'use client';
 import styled, { css } from "styled-components";
-import { Link } from "react-router-dom";
+import Link from "next/link";
 import colors from "../../theme/colors";
 
 // TIPOS DE VARIANTES
 const variants = {
   default: css`
-    background: ${colors.backgroundPrimary};
+    background: ${colors.primary};
     color: ${colors.white};
     &:hover {
       background: ${colors.backgroundSecondary};
+    }
+  `,
+  secondary: css`
+    background: ${colors.white};
+    color: ${colors.secondary};
+    border: 1px solid ${colors.grayLight};
+    &:hover {
+      background: ${colors.grayLight};
     }
   `,
   featured: css`
@@ -21,22 +30,23 @@ const variants = {
 
   borded: css`
     background: transparent;
-    color: ${colors.backgroundPrimary};
+    color: ${colors.secondary};
     border: 1px solid ${colors.primaryBorder};
     &:hover {
-      background: ${colors.backgroundPrimary};
-      color: ${colors.white}
+      background: ${colors.secondary};
+      color: ${colors.white};
+      opacity: 0.9;
     }
   `,
 
-  
+
   outline: css`
     box-shadow: none;
     font-weight: 600;
     background: transparent !important;
     border:  none;
     text-decoration: none;
-    color: ${colors.backgroundPrimary};
+    color: ${colors.secondary};
     padding: 5px !important;
     width: 100%;
     &:hover {
@@ -61,7 +71,9 @@ const sizes = {
   `
 };
 
-export const StyledButton = styled.button<{
+export const StyledButton = styled.button.withConfig({
+  shouldForwardProp: (prop) => !['marginTop', 'marginRight', 'marginBottom', 'marginLeft', 'variant', 'category', 'size', 'fullWidth'].includes(prop)
+})<{
   marginTop?: string | number;
   marginRight?: string | number;
   marginBottom?: string | number;
@@ -70,12 +82,17 @@ export const StyledButton = styled.button<{
   variant?: string;
   category?: string;
   size?: string | number;
+  fullWidth?: boolean;
 }>`
+  display: flex;
+  align-items: center;
+  justify-content: center;
   border: none;
   border-radius: 8px;
   cursor: pointer;
   font-weight: 600;
   transition: 0.2s ease-in-out;
+  width: ${({ fullWidth }) => (fullWidth ? "100%" : "auto")};
 
   /* MARGENS */
   margin-top: ${({ marginTop }) => marginTop || 0};
