@@ -1,11 +1,6 @@
 import { type FC, type ReactNode } from 'react';
-import {
-    StyledTitle,
-    StyledSubtitle,
-    StyledHighlight,
-    StyledTextPersonalized,
-    StyledParagraph
-} from '../../styled/UI/StyledText';
+import styles from './Text.module.scss';
+import clsx from 'clsx';
 import colors from '../../theme/colors';
 
 type TextName =
@@ -21,7 +16,6 @@ type TextName =
 type TextType = 'normal' | 'bold' | 'italic';
 
 export interface TextProps {
-   
     marginTop?: string | number;
     marginRight?: string | number;
     marginBottom?: string | number;
@@ -32,7 +26,6 @@ export interface TextProps {
     paddingBottom?: string | number;
     paddingLeft?: string | number;
 
-    
     name?: TextName;
     type?: TextType;
     decoration?: string;
@@ -44,6 +37,7 @@ export interface TextProps {
     line?: string;
 
     children?: ReactNode;
+    className?: string;
 }
 
 const Text: FC<TextProps> = ({
@@ -67,55 +61,64 @@ const Text: FC<TextProps> = ({
 
     textAlign,
     children,
+    className,
 }) => {
-    const commonProps = {
-        $name: name,
-        $type: type,
-        $color: color,
-        $textAlign: textAlign,
-        $marginTop: marginTop,
-        $marginRight: marginRight,
-        $marginBottom: marginBottom,
-        $marginLeft: marginLeft,
-        $paddingTop: paddingTop,
-        $paddingRight: paddingRight,
-        $paddingBottom: paddingBottom,
-        $paddingLeft: paddingLeft,
-        $ellipsisAt: ellipsisAt,
-        $weight: weight,
-        $line: line,
-        $size: size,
+    const inlineStyles: any = {
+        marginTop,
+        marginRight,
+        marginBottom,
+        marginLeft,
+        paddingTop,
+        paddingRight,
+        paddingBottom,
+        paddingLeft,
+        textAlign,
+        color,
     };
 
-    const renderText = () => {
-        if (name === 'hero' || name === 'title') {
-            return <StyledTitle {...commonProps}>{children}</StyledTitle>;
-        }
+    if (ellipsisAt) {
+        inlineStyles.maxWidth = `${ellipsisAt}px`;
+    }
 
-        if (name === 'subtitle') {
-            return <StyledSubtitle {...commonProps}>{children}</StyledSubtitle>;
-        }
+    if (name === 'personalized') {
+        inlineStyles.fontSize = size || '16px';
+        inlineStyles.fontWeight = weight || '400';
+        inlineStyles.lineHeight = line || '1.5rem';
+    }
 
-        if (name === 'highlight') {
-            return <StyledHighlight {...commonProps}>{children}</StyledHighlight>;
-        }
+    if (decoration && decoration !== 'none') {
+        inlineStyles.textDecoration = decoration;
+    }
 
-        if (name === 'personalized') {
-            return <StyledTextPersonalized {...commonProps}>{children}</StyledTextPersonalized>;
-        }
+    const computedClassName = clsx(
+        styles.text,
+        styles[`text--name-${name}`],
+        styles[`text--type-${type}`],
+        { [styles['text--ellipsis']]: ellipsisAt },
+        className
+    );
 
+    if (name === 'hero' || name === 'title') {
+        return <h1 className={computedClassName} style={inlineStyles}>{children}</h1>;
+    }
 
-        return (
-            <StyledParagraph
-                {...commonProps}
-                $decoration={decoration}
-            >
-                {children}
-            </StyledParagraph>
-        );
-    };
+    if (name === 'subtitle') {
+        return <h2 className={computedClassName} style={inlineStyles}>{children}</h2>;
+    }
 
-    return renderText();
+    if (name === 'highlight') {
+        return <span className={computedClassName} style={inlineStyles}>{children}</span>;
+    }
+
+    if (name === 'personalized') {
+        return <p className={computedClassName} style={inlineStyles}>{children}</p>;
+    }
+
+    return (
+        <p className={computedClassName} style={inlineStyles}>
+            {children}
+        </p>
+    );
 };
 
 export default Text;

@@ -1,7 +1,9 @@
 'use client';
-import styled, { css } from 'styled-components';
+import React from 'react';
+import styles from './Alignment.module.scss';
+import clsx from 'clsx';
 
-interface ColumnProps {
+export interface ColumnProps extends React.HTMLAttributes<HTMLDivElement> {
   flex?: string | number;
   width?: string;
   height?: string;
@@ -10,40 +12,31 @@ interface ColumnProps {
   horizontalCenter?: boolean;
   verticalCenter?: boolean;
   fullyCentralized?: boolean;
+  children?: React.ReactNode;
 }
 
-export const Column = styled.div.withConfig({
-  shouldForwardProp: (prop) => !['flex', 'width', 'height', 'minWidth', 'gap', 'horizontalCenter', 'verticalCenter', 'fullyCentralized'].includes(prop)
-})<ColumnProps>`
-  display: flex;
-  flex-direction: column;
-  flex: ${({ flex }) => flex};
-  width: ${({ width }) => width};
-  height: ${({ height }) => height};
-  min-width: ${({ minWidth }) => minWidth};
-  gap: ${({ gap }) => gap};
-
-
-  ${({ horizontalCenter }) =>
-    horizontalCenter &&
-    css`
-      justify-content: center;
-    `}
-
-  ${({ verticalCenter }) =>
-    verticalCenter &&
-    css`
-      align-items: center;
-    `}
-
-  ${({ fullyCentralized }) =>
-    fullyCentralized &&
-    css`
-      align-items: center;
-      justify-content: center;
-    `}
-`;
-
-Column.defaultProps = {
-  width: '100%',
-};
+export const Column = React.forwardRef<HTMLDivElement, ColumnProps>(({
+  flex, width, height, minWidth, gap,
+  horizontalCenter, verticalCenter, fullyCentralized,
+  className, style, children, ...props
+}, ref) => {
+  return (
+    <div
+      ref={ref}
+      className={clsx(
+        styles.column,
+        {
+          [styles.horizontalCenter]: horizontalCenter,
+          [styles.verticalCenter]: verticalCenter,
+          [styles.fullyCentralized]: fullyCentralized,
+        },
+        className
+      )}
+      style={{ flex, width, height, minWidth, gap, ...style }}
+      {...props}
+    >
+      {children}
+    </div>
+  );
+});
+Column.displayName = 'Column';

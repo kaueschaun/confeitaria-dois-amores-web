@@ -1,7 +1,7 @@
 'use client';
-import styled from "styled-components";
+import React, { SVGProps } from 'react';
 
-interface StyledSvgProps {
+export interface StyledSvgProps extends SVGProps<SVGSVGElement> {
   fill?: string;
   marginTop?: string | number;
   marginRight?: string | number;
@@ -10,12 +10,29 @@ interface StyledSvgProps {
   size?: number | string;
 }
 
-export const StyledSvg = styled.svg<StyledSvgProps>`
-  fill: ${(p) => p.fill};
-  margin-top: ${(p) => p.marginTop ?? 0};
-  margin-right: ${(p) => p.marginRight ?? 0};
-  margin-bottom: ${(p) => p.marginBottom ?? 0};
-  margin-left: ${(p) => p.marginLeft ?? 0};
-  width: ${(p) => p.size ?? "24px"};
-  height: ${(p) => p.size ?? "24px"};
-`;
+export const StyledSvg: React.FC<StyledSvgProps> = ({
+  fill,
+  marginTop = 0,
+  marginRight = 0,
+  marginBottom = 0,
+  marginLeft = 0,
+  size = "24px",
+  style,
+  ...props
+}) => {
+  return (
+    <svg
+      style={{
+        fill,
+        marginTop,
+        marginRight,
+        marginBottom,
+        marginLeft,
+        width: size,
+        height: size,
+        ...style
+      }}
+      {...props}
+    />
+  );
+};

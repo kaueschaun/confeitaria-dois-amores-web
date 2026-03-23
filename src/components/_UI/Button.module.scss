@@ -1,0 +1,92 @@
+@use "../../theme/colors" as *;
+
+.button {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    font-weight: 600;
+    transition: 0.2s ease-in-out;
+    text-decoration: none;
+
+    &--fullWidth {
+        width: 100%;
+    }
+
+    // TAMANHOS
+    &--size-sm {
+        padding: 6px 12px;
+        font-size: 14px;
+    }
+
+    &--size-md {
+        padding: 10px 16px;
+        font-size: 15px;
+    }
+
+    &--size-lg {
+        padding: 14px 20px;
+        font-size: 16px;
+    }
+
+    &--size-default {
+        padding: 10px 14px;
+    }
+
+    // VARIANTES
+    &--variant-default {
+        background: $primary;
+        color: $white;
+
+        &:hover {
+            background: $backgroundSecondary;
+        }
+    }
+
+    &--variant-secondary {
+        background: $white;
+        color: $secondary;
+        border: 1px solid $grayLight;
+
+        &:hover {
+            background: $grayLight;
+        }
+    }
+
+    &--variant-featured {
+        background: $backgroundSecondary;
+        color: $white;
+
+        &:hover {
+            background: $backgroundSecondary;
+        }
+    }
+
+    &--variant-borded {
+        background: transparent;
+        color: $secondary;
+        border: 1px solid $primaryBorder;
+
+        &:hover {
+            background: $secondary;
+            color: $white;
+            opacity: 0.9;
+        }
+    }
+
+    &--variant-outline {
+        box-shadow: none;
+        font-weight: 600;
+        background: transparent;
+        border: none;
+        color: $secondary;
+        padding: 5px;
+        width: 100%;
+
+        &:hover {
+            border: none;
+        }
+    }
+}

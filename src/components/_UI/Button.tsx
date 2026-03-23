@@ -1,6 +1,8 @@
 'use client';
 import { type FC, type ReactNode } from 'react';
-import { StyledButton,  StyledRouteLink } from '../../styled/UI/StyledButton';
+import Link from 'next/link';
+import styles from './Button.module.scss';
+import clsx from 'clsx';
 
 export interface ButtonProps {
     marginTop?: string | number;
@@ -8,7 +10,6 @@ export interface ButtonProps {
     marginBottom?: string | number;
     marginLeft?: string | number;
 
-    // action props
     variant?: string;
     category?: string;
     size?: string | number;
@@ -16,6 +17,7 @@ export interface ButtonProps {
 
     path?: string;
     children?: ReactNode;
+    className?: string;
 }
 
 const Button: FC<ButtonProps> = ({
@@ -23,36 +25,36 @@ const Button: FC<ButtonProps> = ({
     marginRight,
     marginBottom,
     marginLeft,
-    variant,
-    category,
+    variant = 'default',
     size,
     fullWidth,
     children,
-    path
+    path,
+    className
 }) => {
-
-    const renderButton = () => (
-        <StyledButton
-            marginTop={marginTop}
-            marginRight={marginRight}
-            marginBottom={marginBottom}
-            marginLeft={marginLeft}
-            variant={variant}
-            category={category}
-            size={size}
-            fullWidth={fullWidth}
-        >
-            {children}
-        </StyledButton>
-    );
+    const CustomTag = path ? Link : 'button';
 
     return (
-        path ? (
-            <StyledRouteLink href={path}>
-                {renderButton()}
-            </StyledRouteLink>
-        ) : renderButton()
+        <CustomTag
+            href={path || ''}
+            className={clsx(
+                styles.button,
+                styles[`button--variant-${variant}`],
+                size && typeof size === 'string' ? styles[`button--size-${size}`] : (!size && styles['button--size-default']),
+                { [styles['button--fullWidth']]: fullWidth },
+                className
+            )}
+            style={{
+                marginTop: marginTop || 0,
+                marginRight: marginRight || 0,
+                marginBottom: marginBottom || 0,
+                marginLeft: marginLeft || 0,
+                ...(typeof size === 'number' ? { padding: `${size}px` } : {})
+            }}
+        >
+            {children}
+        </CustomTag>
     );
-}
+};
 
 export default Button;

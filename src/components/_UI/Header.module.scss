@@ -1,0 +1,362 @@
+@use "../../theme/colors" as *;
+@use "../../theme/breakpoints" as *;
+
+@keyframes moveToRight {
+    from {
+        transform: translateX(-100%);
+    }
+
+    to {
+        transform: translateX(0px);
+    }
+}
+
+.header {
+    box-shadow: 0 1px 2px 0 rgb(0 0 0 / 0.05);
+    background: $white;
+    position: fixed;
+    top: 0;
+    left: 0;
+    z-index: 998;
+    width: 100%;
+    padding: 5px 0px;
+    border-color: #e5e7eb;
+
+    &__content {
+        display: flex;
+        flex-direction: row;
+        justify-content: space-between;
+        max-width: 80rem;
+        margin: 0px auto;
+        padding: 0 1rem;
+        align-items: center;
+
+        @media screen and (min-width: $sm) {
+            padding-left: 1.5rem;
+            padding-right: 1.5rem;
+        }
+
+        @media screen and (min-width: $lg) {
+            padding-left: 2rem;
+            padding-right: 2rem;
+        }
+    }
+
+    &__right {
+        display: flex;
+        flex-direction: row;
+        width: 80%;
+        justify-content: space-between;
+        align-items: center;
+
+        .header__logoRow {
+            display: flex;
+            flex-direction: row;
+            align-items: center;
+        }
+    }
+
+    &__contentImage {
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+
+        &>img {
+            width: 64px;
+            height: 64px;
+        }
+    }
+
+    &__filters {
+        display: none;
+        align-items: center;
+        justify-content: space-between;
+        padding: 5px;
+        width: 70%;
+
+        @media screen and (min-width: $md) {
+            display: flex;
+            gap: 5px;
+        }
+
+        &>button {
+            box-sizing: border-box;
+            display: flex;
+            flex-direction: row;
+            align-items: center;
+            justify-content: space-around;
+            border-radius: 50px;
+            height: 42px;
+            width: 100px;
+            font-weight: 600;
+        }
+    }
+
+    &__fieldSet {
+        width: 70%;
+        box-sizing: border-box;
+        height: 42px;
+        padding: 0 15px;
+        border-radius: 50px;
+        background: $background;
+        border: 1px solid $primaryBorder;
+        outline: none;
+    }
+
+    &__section {
+        display: none;
+        flex-direction: column;
+        gap: 10px;
+
+        @media screen and (min-width: $md) {
+            display: flex;
+            flex-direction: row;
+        }
+    }
+
+    &__accountKart {
+        display: flex;
+        flex-direction: row;
+        gap: 10px;
+        align-items: center;
+        cursor: pointer;
+    }
+
+    &__buttonLogin {
+        display: flex;
+        flex-direction: row;
+        padding: 5px;
+        justify-content: center;
+        align-items: center;
+        width: 120px;
+        height: 30px;
+        transition: all ease-in-out .25s;
+
+        &:hover {
+            background: $secondary;
+            border-radius: 10px;
+            transform: scale(1.05);
+            opacity: 0.9;
+
+            &>a {
+                color: $white;
+            }
+
+            &>svg {
+                stroke: $white;
+            }
+        }
+    }
+
+    &__kar {
+        border-radius: 100%;
+        padding: 10px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        background: $secondary;
+        transition: all ease-in-out .25s;
+
+        &:hover {
+            transform: scale(1.05);
+            opacity: 0.9;
+        }
+    }
+
+    &__mobile {
+        display: flex;
+        flex-direction: row;
+        justify-content: center;
+        align-items: center;
+        position: relative;
+
+        @media screen and (min-width: $md) {
+            display: none !important;
+        }
+
+        &--hidden {
+            display: none;
+        }
+    }
+
+    &__menuButton {
+        width: 45px;
+        height: 45px;
+        border-radius: 50%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        cursor: pointer;
+        transition: ease-in .25s;
+        background: $background;
+
+        &:hover {
+            transform: scale(1.01);
+        }
+    }
+
+    &__actionMenuMobile {
+        width: 15px;
+        height: 2px;
+        background: $secondary;
+        position: relative;
+
+        &::before,
+        &::after {
+            content: '';
+            width: 15px;
+            height: 2px;
+            background: $secondary;
+            position: absolute;
+            left: 0;
+        }
+
+        &::before {
+            top: -5px;
+        }
+
+        &::after {
+            top: 5px;
+        }
+    }
+
+
+    // -- THE MOBILE MENU ITSELF --
+    &__menuMobile {
+        transition: ease-in 0.3s;
+        animation: moveToRight .4s ease forwards;
+        width: 100%;
+        display: flex;
+        flex-direction: column;
+
+        &--visible {
+            padding: 30px 20px;
+            align-items: flex-end;
+            gap: 20px;
+            position: fixed;
+            top: 0;
+            left: 0;
+            z-index: 999;
+            background: $backgroundPrimary;
+            height: 100vh;
+        }
+
+        &--hidden {
+            display: none;
+        }
+
+        .header__contentMenuMobile {
+            display: flex;
+            flex-direction: row;
+            width: 100%;
+            justify-content: space-between;
+            align-items: center;
+            gap: 10px;
+
+            .header__logoRow {
+                display: flex;
+                flex-direction: row;
+                align-items: center;
+            }
+        }
+
+        .header__close {
+            position: relative;
+            width: 45px;
+            height: 45px;
+            cursor: pointer;
+            background: rgba(0, 0, 0, 0.05);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: transform .25s ease;
+
+            span {
+                position: relative;
+                width: 18px;
+                height: 18px;
+                display: block;
+                transition: transform .25s ease;
+
+                &::before,
+                &::after {
+                    content: '';
+                    position: absolute;
+                    top: 50%;
+                    left: 0;
+                    width: 18px;
+                    height: 3px;
+                    background: $secondary;
+                    transform: translateY(-50%);
+                }
+
+                &::before {
+                    transform: translateY(-50%) rotate(45deg);
+                }
+
+                &::after {
+                    transform: translateY(-50%) rotate(-45deg);
+                }
+            }
+
+            &:hover span {
+                transform: rotate(90deg);
+            }
+        }
+
+        .header__mainMenu {
+            display: flex;
+            flex-direction: column;
+            width: 100%;
+            gap: 10px;
+
+            &>div>a {
+                justify-content: flex-start;
+                padding: 0 !important;
+            }
+
+            &>div>a>p {
+                font-size: 16px;
+            }
+        }
+
+        .header__cardRoute {
+            display: flex;
+            flex-direction: row;
+            height: 80px;
+            width: 100%;
+            padding: 15px 20px;
+            background: $white;
+            box-shadow: 0 2px 10px 0 rgba(0, 0, 0, 0.05);
+            border-radius: 16px;
+            align-items: center;
+            transition: all ease-in-out .25s;
+
+            &:hover {
+                transform: scale(1.02);
+                background: $backgroundSecondary;
+                cursor: pointer;
+
+                &>a {
+                    color: $white;
+                }
+            }
+        }
+
+        .header__textButton {
+            color: $secondary !important;
+        }
+
+        .header__iconRoute {
+            width: 45px;
+            height: 45px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: rgba(168, 85, 247, 0.1);
+            border-radius: 10px;
+        }
+    }
+}

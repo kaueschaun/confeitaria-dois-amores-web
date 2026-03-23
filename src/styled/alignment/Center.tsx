@@ -1,51 +1,38 @@
 'use client';
-import styled from 'styled-components';
+import React from 'react';
+import styles from './Alignment.module.scss';
+import clsx from 'clsx';
 
-interface CenterProps {
+export interface CenterProps extends React.HTMLAttributes<HTMLDivElement> {
     width?: string;
     height?: string;
-    textAlign?: string;
+    textAlign?: any;
+    children?: React.ReactNode;
 }
 
-export const HorizontalCenter = styled.div.withConfig({
-  shouldForwardProp: (prop) => !['width', 'height', 'textAlign'].includes(prop)
-})<CenterProps>`
-    display: flex;
-    justify-content: center;
-    width: ${({ width }) => width};
-    height: ${({ height }) => height};
-    text-align: ${({ textAlign }) => textAlign};
-`;
+export const HorizontalCenter = React.forwardRef<HTMLDivElement, CenterProps>(({
+    width = '100%', height, textAlign, className, style, children, ...props
+}, ref) => (
+    <div ref={ref} className={clsx(styles.horizontalCenterDiv, className)} style={{ width, height, textAlign, ...style }} {...props}>
+        {children}
+    </div>
+));
+HorizontalCenter.displayName = 'HorizontalCenter';
 
-export const VerticalCenter = styled.div.withConfig({
-  shouldForwardProp: (prop) => !['width', 'height', 'textAlign'].includes(prop)
-})<CenterProps>`
-    display: flex;
-    align-items: center;
-    width: ${ props => props.width};
-    height: ${ props => props.height};
-    text-align: ${ props => props.textAlign};
-`;
+export const VerticalCenter = React.forwardRef<HTMLDivElement, CenterProps>(({
+    width = '100%', height, textAlign, className, style, children, ...props
+}, ref) => (
+    <div ref={ref} className={clsx(styles.verticalCenterDiv, className)} style={{ width, height, textAlign, ...style }} {...props}>
+        {children}
+    </div>
+));
+VerticalCenter.displayName = 'VerticalCenter';
 
-export const FullyCentered = styled.div.withConfig({
-  shouldForwardProp: (prop) => !['width', 'height', 'textAlign'].includes(prop)
-})<CenterProps>`
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    width: ${ props => props.width};
-    height: ${ props => props.height};
-    text-align: ${ props => props.textAlign};
-`;
-
-HorizontalCenter.defaultProps = {
-    width: '100%',
-};
-
-VerticalCenter.defaultProps = {
-    width: '100%',
-};
-
-FullyCentered.defaultProps = {
-    width: '100%',
-};
+export const FullyCentered = React.forwardRef<HTMLDivElement, CenterProps>(({
+    width = '100%', height, textAlign, className, style, children, ...props
+}, ref) => (
+    <div ref={ref} className={clsx(styles.fullyCenteredDiv, className)} style={{ width, height, textAlign, ...style }} {...props}>
+        {children}
+    </div>
+));
+FullyCentered.displayName = 'FullyCentered';

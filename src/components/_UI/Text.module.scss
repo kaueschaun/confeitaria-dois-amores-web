@@ -1,0 +1,32 @@
+.text {
+    &--type-bold {
+        font-weight: bold;
+    }
+
+    &--type-italic {
+        font-style: italic;
+    }
+
+    &--ellipsis {
+        white-space: nowrap;
+        overflow: hidden;
+        text-overflow: ellipsis;
+    }
+
+    &--name-hero {
+        font-size: 48px;
+    }
+
+    &--name-title {
+        font-size: 32px;
+    }
+
+    &--name-subtitle {
+        font-size: 20px;
+    }
+
+    &--name-highlight {
+        font-weight: bold;
+        color: #ffb400; // Will be overridden by inline style if color prop is passed
+    }
+}

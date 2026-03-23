@@ -1,6 +1,12 @@
-import StyledComponentsRegistry from '../lib/registry'
+import '../styled/global.scss'
+import { Roboto } from 'next/font/google'
 
-// Se você tiver um ThemeProvider global do styled-components, você o enveloparia aqui também.
+const font = Roboto({
+    weight: ['400', '500', '700'],
+    subsets: ['latin'],
+    display: 'swap',
+})
+
 
 export const metadata = {
     title: 'Confeitaria Dois Amores',
@@ -14,10 +20,8 @@ export default function RootLayout({
 }) {
     return (
         <html lang="pt-BR">
-            <body>
-                <StyledComponentsRegistry>
-                    {children}
-                </StyledComponentsRegistry>
+            <body className={font.className}>
+                {children}
             </body>
         </html>
     )

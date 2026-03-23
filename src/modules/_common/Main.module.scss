@@ -1,0 +1,29 @@
+@use "../../theme/colors" as *;
+@use "../../theme/breakpoints" as *;
+
+.main {
+    width: 100%;
+    background: $background;
+    height: 100vh;
+    overflow-y: auto;
+
+    &__content {
+        padding: 120px 1rem;
+        max-width: 80rem;
+        margin: 0px auto;
+        display: flex;
+        flex-direction: column;
+
+        @media screen and (min-width: $md) {
+            padding: 120px 1.5rem;
+        }
+
+        @media screen and (min-width: $lg) {
+            padding: 120px 2rem;
+        }
+    }
+
+    &__styledMain {
+        margin-top: 40px;
+    }
+}
