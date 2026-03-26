@@ -36,7 +36,7 @@ export default function SignIn() {
                 <Text name="small">Esqueceu a senha?</Text>
               </a>
             </Row>
-            <Button fullWidth marginTop="20px" path="/entrar">
+            <Button fullWidth marginTop="20px" path="/inicial">
               Entrar
             </Button>
           </Column>

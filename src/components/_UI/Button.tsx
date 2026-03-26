@@ -32,28 +32,35 @@ const Button: FC<ButtonProps> = ({
     path,
     className
 }) => {
-    const CustomTag = path ? Link : 'button';
+    const commonProps = {
+        className: clsx(
+            styles.button,
+            styles[`button--variant-${variant}`],
+            size && typeof size === 'string' ? styles[`button--size-${size}`] : (!size && styles['button--size-default']),
+            { [styles['button--fullWidth']]: fullWidth },
+            className
+        ),
+        style: {
+            marginTop: marginTop || 0,
+            marginRight: marginRight || 0,
+            marginBottom: marginBottom || 0,
+            marginLeft: marginLeft || 0,
+            ...(typeof size === 'number' ? { padding: `${size}px` } : {})
+        }
+    };
+
+    if (path) {
+        return (
+            <Link href={path} {...commonProps}>
+                {children}
+            </Link>
+        );
+    }
 
     return (
-        <CustomTag
-            href={path || ''}
-            className={clsx(
-                styles.button,
-                styles[`button--variant-${variant}`],
-                size && typeof size === 'string' ? styles[`button--size-${size}`] : (!size && styles['button--size-default']),
-                { [styles['button--fullWidth']]: fullWidth },
-                className
-            )}
-            style={{
-                marginTop: marginTop || 0,
-                marginRight: marginRight || 0,
-                marginBottom: marginBottom || 0,
-                marginLeft: marginLeft || 0,
-                ...(typeof size === 'number' ? { padding: `${size}px` } : {})
-            }}
-        >
+        <button {...commonProps}>
             {children}
-        </CustomTag>
+        </button>
     );
 };
 
