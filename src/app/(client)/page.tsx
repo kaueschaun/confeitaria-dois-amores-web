@@ -1,4 +1,4 @@
-import HomeContainer from "../../modules/home/HomeContainer";
+import HomeContainer from "../../components/client/HomeContainer";
 
 
 export default function Home() {

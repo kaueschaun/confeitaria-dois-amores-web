@@ -32,7 +32,7 @@ export default function Header() {
             <div className={styles.header__iconRoute}>
               <User size={16} color={colors.secondary} />
             </div>
-            <Button variant="outline" path="/login">
+            <Button variant="outline" path="/entrar">
               <Text marginLeft={'10px'} type="bold" className={styles.header__textButton}>Entrar</Text>
             </Button>
           </div>
@@ -68,7 +68,7 @@ export default function Header() {
             <div className={styles.header__accountKart}>
               <div className={styles.header__buttonLogin}>
                 <User color={colors.secondary} size={20} />
-                <Button variant="outline" path="/login">Entrar</Button>
+                <Button variant="outline" path="/entrar">Entrar</Button>
               </div>
 
               <div className={styles.header__kar}>

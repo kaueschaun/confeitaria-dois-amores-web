@@ -1,6 +1,6 @@
 'use client';
-import Header from "../../components/_UI/Header";
-import Text from "../../components/_UI/Text";
+import Header from "../../_UI/Header";
+import Text from "../../_UI/Text";
 import { type ReactNode } from "react";
 import styles from './Main.module.scss';
 
