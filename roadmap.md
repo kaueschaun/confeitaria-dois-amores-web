@@ -16,27 +16,33 @@ Este documento serve como seu guia de desenvolvimento para transformar este proj
 - [ ] **Próximo Passo**: Configuração do **Firebase** (Auth, Firestore e Storage).
 - [ ] Implementação de Hooks customizados para acesso aos dados.
 
-## 📦 Fase 2: Admin CMS (Gestão de Produtos)
+## 📦 Fase 2: Admin CMS & Controle (Gestão de Produtos)
 - [ ] **CRUD de Produtos**: Criar, Listar, Editar e Deletar.
-- [ ] **Upload de Imagens**: Integração com Storage (Supabase/Firebase) + Otimização automática (`next/image`).
-- [ ] **Feedback ao Usuário**: Toasts de sucesso/erro e skeletons de carregamento.
-- [ ] **Autenticação Real**: Proteger as rotas de admin usando Middleware do Next.js.
+- [ ] **Controle de Estoque**: Gerenciamento de quantidades e alertas de baixo estoque.
+- [ ] **Upload de Imagens**: Integração com Storage + Otimização automática (`next/image`).
+- [ ] **Feedback ao Usuário**: Toasts e Skeletons modernos.
 
-## 🚀 Fase 3: Vitrine do Cliente & SEO
-- [ ] **Página de Listagem**: Renderização híbrida (ISR/SSG) para velocidade máxima.
-- [ ] **SEO Nativo**: Meta-tags dinâmicas, JSON-LD para produtos (Schema.org).
-- [ ] **Página de Detalhes**: Deep linking e compartilhamento social.
-- [ ] **Analytics**: Implementação de **Google Tag Manager (GTM)** para rastrear cliques e visualizações.
+## 📱 Fase 3: PDV (Ponto de Venda) & Admin
+- [ ] **Interface de PDV**: Sistema rápido para registrar vendas presenciais no admin.
+- [ ] **Integração PDV-Cliente**: Sincronização em tempo real de estoque entre pedidos online e físicos.
 
-## 🛒 Fase 4: Carrinho & Fluxo de Pedido
-- [ ] **Estado Global**: Gerenciar carrinho de compras (Zustand ou Context API).
-- [ ] **Integração WhatsApp**: Gerador dinâmico de mensagens com base nos itens do carrinho.
-- [ ] **Persistência**: Salvar carrinho no `localStorage` para não perder dados ao atualizar.
+## 🚀 Fase 4: Vitrine do Cliente & SEO
+- [ ] **Página de Listagem**: Renderização rápida e SEO (Meta-tags).
+- [ ] **SEO Avançado**: JSON-LD e Sitemaps.
+- [ ] **Analytics**: Implementação de GTM.
 
-## 🧪 Fase 5: Qualidade & Padrões (Skills)
-- [ ] **Padrões de Código**: Manter o padrão de componentes através do `CONFEITARIA_GUIDE.md`.
-- [ ] **Testes Unitários**: Garantir que o cálculo de preços e o carrinho funcionem (Jest).
-- [ ] **Testes E2E**: Simular um usuário fazendo um pedido do início ao fim (Playwright).
+## 🛒 Fase 5: Carrinho & Fluxo de Pedido
+- [ ] **Estado Global**: Gerenciar carrinho (Zustand/Context).
+- [ ] **Integração WhatsApp**: Gerador de mensagens de pedido.
+
+## 🔐 Fase 6: Autenticação & Segurança
+- [ ] **Login Administrativo**: Email/Senha inicial.
+- [ ] **Login com Google**: Facilitar acesso para admin e futuramente clientes.
+
+## 🧪 Fase 7: Qualidade & Ferramentas Modernas
+- [ ] **Padrões de Código**: `CONFEITARIA_GUIDE.md`.
+- [ ] **Testes**: Unitários e E2E (Playwright/Vitest).
+- [ ] **Ferramentas de Front**: Explorar libs de animação (Framer Motion) e performance.
 
 ---
 

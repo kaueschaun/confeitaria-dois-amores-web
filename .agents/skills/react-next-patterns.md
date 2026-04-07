@@ -1,6 +1,11 @@
-# 🧁 Confeitaria Dois Amores: Guia de Padrões (Skill)
+---
+name: React & Next.js Patterns
+description: Padrões de arquitetura de UI, rotas do App Router e Testes para o projeto Confeitaria Dois Amores.
+---
 
-Este documento define os padrões de desenvolvimento para garantir que o projeto seja escalável, comercializável e fácil de manter.
+# Padrões de Arquitetura e UI
+
+Este documento define os padrões para desenvolvimento Frontend.
 
 ## 🏗️ Arquitetura de Componentes
 - **Localização**: Componentes de UI genéricos em `src/components/_UI`. Componentes de negócio em `src/components/[Recurso]`.
@@ -15,19 +20,6 @@ Este documento define os padrões de desenvolvimento para garantir que o projeto
     - Ex: `src/app/(admin)/produtos`
 - **Área Cliente**: Dentro do route group `(client)`.
 - **Layouts**: Manter o `layout.tsx` do admin com a barra lateral e o do cliente com o Header/Footer da vitrine.
-
-## 💾 Gestão de Dados (Prisma & Supabase)
-- **Models**: Sempre atualizar o `schema.prisma` antes de criar a lógica no frontend.
-- **Client**: Usar um singleton para o Prisma Client em `src/lib/prisma.ts`.
-- **Tipagem**: Usar os tipos gerados pelo Prisma (`import { Product } from "@prisma/client"`) em vez de criar tipos manuais para entidades do banco.
-
-## 📝 Commits (Conventional Commits)
-Seguir o padrão para um histórico limpo:
-- `feat:` Nova funcionalidade.
-- `fix:` Correção de bug.
-- `docs:` Mudança em documentação.
-- `style:` Formatação, pontos e vírgulas faltando, etc; sem mudança de código.
-- `refactor:` Refatoração de código de uma funcionalidade específica.
 
 ## 🧪 Testes
 - **Unitários**: Testar funções utilitárias e lógica de preço.
