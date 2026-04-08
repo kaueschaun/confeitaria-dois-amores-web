@@ -16,6 +16,7 @@ export default function SignIn() {
       <FullyCentered className={styles.content}>
         <Column className={styles.cardContainer} style={{ background: colors.white }}>
           <Column className={styles.styledHeader}>
+            <img src="/assets/svg/logo.png" alt="Logo Confeitaria Dois Amores" style={{ width: '80px', marginBottom: '12px' }} />
             <Text weight='700' color={colors.night}>Bem-vindo de volta!</Text>
             <Text marginTop={'10px'} size="0.875rem" name='personalized' weight='300' color={colors.nightLight}>
               Não tem uma conta? <a href="#">Crie a sua agora!</a>
@@ -43,7 +44,7 @@ export default function SignIn() {
 
           <Row className={styles.orDivider}>
             <div style={{ background: colors.grayLight }} />
-            <Text>Ou continue com</Text>
+            <Text>ou continue com</Text>
             <div style={{ background: colors.grayLight }} />
           </Row>
 
