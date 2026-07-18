@@ -1,4 +1,6 @@
 'use client';
+import { useState } from 'react';
+import { useRouter } from 'next/navigation';
 import { Column } from "../../../styled/alignment/Column"
 import colors from "../../../theme/colors"
 import { FullyCentered } from "../../../styled/alignment/Center";
@@ -11,6 +13,46 @@ import Icon from "../../../components/_UI/Icon";
 import styles from "./SignIn.module.scss";
 
 export default function SignIn() {
+  const [email, setEmail] = useState('');
+  const [password, setPassword] = useState('');
+  const [error, setError] = useState('');
+  const [loading, setLoading] = useState(false);
+  const router = useRouter();
+
+  const handleLogin = async (e: React.FormEvent) => {
+    e.preventDefault();
+    setError('');
+    
+    if (!email || !password) {
+      setError('Preencha todos os campos.');
+      return;
+    }
+
+    try {
+      setLoading(true);
+      const res = await fetch('http://localhost:3001/auth/admin/signin', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({ email, password }),
+      });
+
+      const data = await res.json();
+
+      if (!res.ok) {
+        throw new Error(data.message || 'Erro ao realizar login.');
+      }
+
+      localStorage.setItem('token', data.accessToken);
+      router.push('/inicial');
+    } catch (err: any) {
+      setError(err.message || 'Erro inesperado.');
+    } finally {
+      setLoading(false);
+    }
+  };
+
   return (
     <FullyCentered className={styles.container} style={{ background: colors.backgroundPrimary }}>
       <FullyCentered className={styles.content}>
@@ -22,25 +64,47 @@ export default function SignIn() {
               Não tem uma conta? <a href="#">Crie a sua agora!</a>
             </Text>
           </Column>
-          <Column className={styles.sectionForm}>
-            <FieldSet variant="squared" label="E-mail" />
-            <FieldSet marginTop={'10px'} variant="squared" label="Senha" />
+          
+          <form onSubmit={handleLogin} style={{ width: '100%', display: 'flex', flexDirection: 'column' }}>
+            <Column className={styles.sectionForm}>
+              <FieldSet 
+                variant="squared" 
+                label="E-mail" 
+                type="email"
+                value={email}
+                onChange={(e) => setEmail(e.target.value)}
+              />
+              <FieldSet 
+                marginTop={'10px'} 
+                variant="squared" 
+                label="Senha" 
+                type="password"
+                value={password}
+                onChange={(e) => setPassword(e.target.value)}
+              />
 
-            <Row width="100%" style={{ marginTop: '20px', justifyContent: 'space-between' }}>
-              <Row width="auto" verticalCenter>
-                <input type="checkbox" id="remember" />
-                <label htmlFor="remember">
-                  <Text marginLeft="5px" name="small">Lembrar</Text>
-                </label>
+              {error && (
+                <Text name="small" color={colors.danger} marginTop="10px">
+                  {error}
+                </Text>
+              )}
+
+              <Row width="100%" style={{ marginTop: '20px', justifyContent: 'space-between' }}>
+                <Row width="auto" verticalCenter>
+                  <input type="checkbox" id="remember" />
+                  <label htmlFor="remember">
+                    <Text marginLeft="5px" name="small">Lembrar</Text>
+                  </label>
+                </Row>
+                <a href="#">
+                  <Text name="small">Esqueceu a senha?</Text>
+                </a>
               </Row>
-              <a href="#">
-                <Text name="small">Esqueceu a senha?</Text>
-              </a>
-            </Row>
-            <Button fullWidth marginTop="20px" path="/inicial">
-              Entrar
-            </Button>
-          </Column>
+              <Button type="submit" fullWidth marginTop="20px" disabled={loading}>
+                {loading ? 'Entrando...' : 'Entrar'}
+              </Button>
+            </Column>
+          </form>
 
           <Row className={styles.orDivider}>
             <div style={{ background: colors.grayLight }} />

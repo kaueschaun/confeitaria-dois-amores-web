@@ -1,10 +1,10 @@
 'use client';
-import { type FC, type ReactNode } from 'react';
+import { type FC, type ReactNode, type ButtonHTMLAttributes } from 'react';
 import Link from 'next/link';
 import styles from './Button.module.scss';
 import clsx from 'clsx';
 
-export interface ButtonProps {
+export interface ButtonProps extends ButtonHTMLAttributes<HTMLButtonElement> {
     marginTop?: string | number;
     marginRight?: string | number;
     marginBottom?: string | number;
@@ -30,7 +30,9 @@ const Button: FC<ButtonProps> = ({
     fullWidth,
     children,
     path,
-    className
+    className,
+    type,
+    ...rest
 }) => {
     const commonProps = {
         className: clsx(
@@ -58,7 +60,7 @@ const Button: FC<ButtonProps> = ({
     }
 
     return (
-        <button {...commonProps}>
+        <button type={type || 'button'} {...commonProps} {...rest}>
             {children}
         </button>
     );

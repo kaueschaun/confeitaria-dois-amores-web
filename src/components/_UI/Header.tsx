@@ -30,7 +30,7 @@ export default function Header() {
         <div className={styles.header__mainMenu}>
           <div className={styles.header__cardRoute}>
             <div className={styles.header__iconRoute}>
-              <User size={16} color={colors.secondary} />
+              <User size={20} color={colors.secondary} />
             </div>
             <Button variant="outline" path="/entrar">
               <Text marginLeft={'10px'} type="bold" className={styles.header__textButton}>Entrar</Text>
@@ -66,10 +66,10 @@ export default function Header() {
 
           <section className={styles.header__section}>
             <div className={styles.header__accountKart}>
-              <div className={styles.header__buttonLogin}>
-                <User color={colors.secondary} size={20} />
-                <Button variant="outline" path="/entrar">Entrar</Button>
-              </div>
+              <Button variant="borded" path="/entrar" className={styles.header__buttonLogin}>
+                <User size={16} />
+                Entrar
+              </Button>
 
               <div className={styles.header__kar}>
                 <ShoppingCart color={colors.white} size={20} />

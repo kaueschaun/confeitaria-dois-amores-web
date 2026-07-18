@@ -123,28 +123,19 @@
     }
 
     &__buttonLogin {
+        box-sizing: border-box;
         display: flex;
         flex-direction: row;
-        padding: 5px;
-        justify-content: center;
         align-items: center;
-        width: 120px;
-        height: 30px;
+        justify-content: space-around;
+        border-radius: 50px;
+        height: 42px;
+        width: 100px;
+        font-weight: 600;
         transition: all ease-in-out .25s;
 
         &:hover {
-            background: $secondary;
-            border-radius: 10px;
             transform: scale(1.05);
-            opacity: 0.9;
-
-            &>a {
-                color: $white;
-            }
-
-            &>svg {
-                stroke: $white;
-            }
         }
     }
 
@@ -351,6 +342,7 @@
         .header__iconRoute {
             width: 45px;
             height: 45px;
+            flex-shrink: 0;
             border-radius: 50%;
             display: flex;
             align-items: center;

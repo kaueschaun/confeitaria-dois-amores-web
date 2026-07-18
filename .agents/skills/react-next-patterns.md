@@ -11,7 +11,7 @@ Este documento define os padrões para desenvolvimento Frontend.
 - **Localização**: Componentes de UI genéricos em `src/components/_UI`. Componentes de negócio em `src/components/[Recurso]`.
 - **Estilização**: Usar **SCSS Modules**.
     - Arquivo: `NomeComponente.module.scss`.
-    - Nomeclatura: Seguir padrão BEM (Block Element Modifier) se possível.
+    - Nomeclatura: Seguir padrão BEM (Block Element Modifier) com hierarquiase possível, usar nome de classe camelCase.
 - **Props**: Sempre definir uma `interface [Nome]Props` exportada.
 
 ## 📁 Estrutura de Rotas (Next.js App Router)
