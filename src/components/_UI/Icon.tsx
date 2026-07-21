@@ -33,7 +33,7 @@ const Icon: FC<StyledSvgProps> = ({
       marginLeft={marginLeft}
       size={size}
     >
-      <use href={`../../../public/assets/svg/icons.svg#${name}`} />
+      <use href={`/assets/svg/icons.svg#${name}`} />
     </StyledSvg>
   );
 };
